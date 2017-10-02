@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "summary": "Networking Diagraming UI",
+  "description": "Create an extensible Networking Diagramming Tool",
+  "repository": "https://github.com/user/project.git",
+  "license": "MIT",
+  "exposed-modules": [],
+  "dependencies": {
+    "react" : "^15.6.1",
+    "react-dom" : "^15.6.1",
+    "react-three-renderer" : "^3.2.1",
+    "three" : "^0.86.0"
+  }
+}
