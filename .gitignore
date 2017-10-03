@@ -2,3 +2,5 @@
 workspace.xml
 elm-stuff/
 node_modules/
+npm-debug.log
+dist/
