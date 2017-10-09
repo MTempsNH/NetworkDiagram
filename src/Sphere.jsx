@@ -11,7 +11,7 @@ export default class Sphere extends React.Component {
         return(
              <sphereGeometry
                 resourceId="particleGeometry"
-                radius={0.3}
+                radius={0.5}
                 widthSegments={8}
                 heightSegments={8}
             />
