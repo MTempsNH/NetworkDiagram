@@ -24,49 +24,71 @@ export default class Scene extends React.Component {
         this.lightPosition = new THREE.Vector3(0, 5, 5);
         this.lightTarget = new THREE.Vector3(0, 0, 0);
 
+        // this.groupRotation = new THREE.Euler(0, 0, 0);
+
         this.boxPosition = new THREE.Vector3(0, 2, 2);
 
-        this._onAnimate = () => {
-            // we will get this callback every frame
-
-            // pretend cubeRotation is immutable.
-            // this helps with updates and pure rendering.
-            // React will be sure that the rotation has now updated.
-            this.setState({
-                cubeRotation: new THREE.Euler(
-                    this.state.cubeRotation.x + 0.1,
-                    this.state.cubeRotation.y + 0.1,
-                    0
-                ),
-            });
-        };
+        this.state.groupRotation = new THREE.Euler(0, 0, 0);
 
         // Setup event handling
-        document.addEventListener('mouseup', this._onMouseUp, false);
-        document.addEventListener('mousedown', this._onMouseDown, false);
-        document.addEventListener('mousemove', this._onMouseMove, false);
+        document.addEventListener('mouseup', this._onMouseUp.bind(this), false);
+        document.addEventListener('mousedown', this._onMouseDown.bind(this), false);
+        document.addEventListener('mousemove', this._onMouseMove.bind(this), false);
+
+        this.state._mouseDown = false;
+        this.state._groupPositionX = 0;
+        this.state._groupPositionY = 0;
+    }
+
+    _onAnimate(ref) {
+        // we will get this callback every frame
+
+        // console.log("this.state: ", this);
+        if(this.state._mouseDown){
+            console.log("Update position");
+            this._updateGroupPosition();
+        }
+        this._myAnimate.bind(this);
+    };
+
+    _updateGroupPosition() {
+        // console.log("Group THIS: ", this);
+
+        this.setState({
+            groupRotation: new THREE.Euler(this.state._groupPositionX * 0.05, this.state._groupPositionY * 0.05, 0)
+        });
+    };
+
+    _myAnimate(){
+        // console.log("THIS: ", this);
     }
 
     _onMouseUp() {
+        this.setState({
+            _mouseDown : false
+        });
         console.log("mouse up");
     };
 
-    _onMouseDown() {
-        console.log("mouse down");
+    _onMouseDown(event) {
+
+        this.setState({
+            _mouseDown : true
+        });
+
+        console.log("mouse down: ", event.clientX);
+
     };
 
     _onMouseMove() {
+        if(this.state._mouseDown){
+            this.setState({
+                _groupPositionX : event.clientX,
+                _groupPositionY : event.clientY
+            });
+        }
         console.log("mouse move");
     };
-
-    componentDidMount (){
-        var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
-        hemiLight.color.setHSL( 0.6, 1, 0.6 );
-        hemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
-        hemiLight.position.set( 0, 50, 0 );
-        this.refs.scene.add( hemiLight );
-        console.log(this.refs);
-    }
 
     render() {
         const width = window.innerWidth; // canvas width
@@ -83,8 +105,7 @@ export default class Scene extends React.Component {
             shadowMapEnabled
             pixelRatio={window.devicePixelRatio}
             clearColor={0x333333}
-
-            onAnimate={this._onAnimate}>
+            onAnimate={this._onAnimate.bind(this)}>
                 <resources>
                     <Sphere resourceId="particleGeometry" />
                 </resources>
@@ -99,12 +120,9 @@ export default class Scene extends React.Component {
                         top={height / 200}
                         bottom={height / -200}
 
-
                         position={this.cameraPosition}
                         lookAt={this.worldPosition}
                     />
-
-
 
                     <ambientLight
                         color={0x666666}
@@ -131,7 +149,7 @@ export default class Scene extends React.Component {
                         lookAt={this.lightTarget}
                     />
 
-                    <group rotation ={new THREE.Euler(0.8,0,1.57)}>
+                    <group rotation={this.state.groupRotation}>
                         <mesh castShadow
                               receiveShadow
                               position={this.boxPosition}>
@@ -151,7 +169,6 @@ export default class Scene extends React.Component {
                         </mesh>
                     </group>
                 </scene>
-
         </React3>);
     }
 };
