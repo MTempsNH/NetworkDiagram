@@ -8,6 +8,8 @@ import * as THREE from 'three';
 import Square from './Square';
 import Sphere from './Sphere';
 
+var OrbitControls = require('three-orbit-controls')(THREE)
+
 const d = 20;
 
 export default class Scene extends React.Component {
@@ -28,66 +30,40 @@ export default class Scene extends React.Component {
 
         this.boxPosition = new THREE.Vector3(0, 2, 2);
 
-        this.state.groupRotation = new THREE.Euler(0, 0, 0);
+        // this.state.groupRotation = new THREE.Euler(0, 0, 0);
 
         // Setup event handling
         document.addEventListener('mouseup', this._onMouseUp.bind(this), false);
         document.addEventListener('mousedown', this._onMouseDown.bind(this), false);
         document.addEventListener('mousemove', this._onMouseMove.bind(this), false);
 
+        /*
         this.state._mouseDown = false;
         this.state._groupPositionX = 0;
         this.state._groupPositionY = 0;
+        */
     }
 
-    _onAnimate(ref) {
-        // we will get this callback every frame
+    _onAnimate() {};
 
-        // console.log("this.state: ", this);
-        if(this.state._mouseDown){
-            console.log("Update position");
-            this._updateGroupPosition();
-        }
-        this._myAnimate.bind(this);
+    _onMouseUp() {};
+
+    _onMouseDown() {};
+
+    _onMouseMove() {};
+
+    componentWillUnmount() {
+        this.controls.dispose();
+        delete this.controls;
     };
 
-    _updateGroupPosition() {
-        // console.log("Group THIS: ", this);
+    componentDidMount() {
+        this.controls = new OrbitControls(this.refs.camera);
 
-        this.setState({
-            groupRotation: new THREE.Euler(this.state._groupPositionX * 0.05, this.state._groupPositionY * 0.05, 0)
-        });
-    };
 
-    _myAnimate(){
-        // console.log("THIS: ", this);
-    }
-
-    _onMouseUp() {
-        this.setState({
-            _mouseDown : false
-        });
-        console.log("mouse up");
-    };
-
-    _onMouseDown(event) {
-
-        this.setState({
-            _mouseDown : true
-        });
-
-        console.log("mouse down: ", event.clientX);
-
-    };
-
-    _onMouseMove() {
-        if(this.state._mouseDown){
-            this.setState({
-                _groupPositionX : event.clientX,
-                _groupPositionY : event.clientY
-            });
-        }
-        console.log("mouse move");
+        console.log("REFS: ", this.refs['box1'].getVertices());
+        this.square1 = this.refs['box1'];
+        console.log("square1: ", this.square1);
     };
 
     render() {
@@ -121,7 +97,7 @@ export default class Scene extends React.Component {
                         bottom={height / -200}
 
                         position={this.cameraPosition}
-                        lookAt={this.worldPosition}
+
                     />
 
                     <ambientLight
@@ -134,35 +110,24 @@ export default class Scene extends React.Component {
 
                         castShadow
 
-                        shadowMapWidth={1024}
-                        shadowMapHeight={1024}
-
-                        shadowCameraLeft={-d}
-                        shadowCameraRight={d}
-                        shadowCameraTop={d}
-                        shadowCameraBottom={-d}
-
-                        shadowCameraFar={3 * d}
-                        shadowCameraNear={d}
-
                         position={this.lightPosition}
                         lookAt={this.lightTarget}
                     />
 
-                    <group rotation={this.state.groupRotation}>
-                        <mesh castShadow
-                              receiveShadow
-                              position={this.boxPosition}>
-                            <Square />
+                    <group>
+                        <mesh
+                            position={this.boxPosition}
+                        >
+                            <Square ref="box1" />
                             <meshLambertMaterial
                                 color={0x00ff00}
                             />
                         </mesh>
                         <mesh
-                            scale={new THREE.Vector3(0.5, 0.5, 1)}
+                            scale={new THREE.Vector3(1, 1, 1)}
                             position={new THREE.Vector3(0.2, 0.3, 0.2)}
                         >
-                            <Square />
+                            <Square ref="box2" />
                             <meshLambertMaterial
                                 color={0xfafa00}
                             />

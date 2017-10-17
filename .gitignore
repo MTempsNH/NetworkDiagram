@@ -1,4 +1,5 @@
 .idea/
+_book/
 workspace.xml
 elm-stuff/
 node_modules/
