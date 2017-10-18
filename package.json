@@ -6,7 +6,7 @@
   "license": "MIT",
   "exposed-modules": [],
   "scripts": {
-    "build": "babel --presets es2015 src -d lib",
+    "build": "./node_modules/.bin/webpack -d",
     "doc-build": "",
     "start": "node server.js",
     "watch": "webpack --watch"
@@ -14,8 +14,6 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.1",
-    "gitbook-cli": "3.2.3",
-    "gitbook-plugin-theme-faq": "1.2.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-three-renderer": "^3.2.1",
@@ -27,6 +25,8 @@
     "babel-loader": "^6.2.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-es2015": "^6.24.1",
+    "gitbook-cli": "3.2.3",
+    "gitbook-plugin-theme-faq": "1.2.1",
     "three-orbit-controls": "^82.1.0",
     "webpack": "^3.6.0"
   }
