@@ -1,0 +1,9 @@
+---
+app:
+ name: network-diagramming-tool
+ portfolio: ecommerce
+ platform: nodejs
+ upstream: 
+ auth_type: none
+ port: 80
+ config_version: latest
