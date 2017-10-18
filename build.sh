@@ -9,3 +9,4 @@ echo $PWD
 echo "NPM build finished. Next: copy and paste index.html"
 cp src/index.html dist/index.html
 echo "Completed moving index.html"
+cp server.js server.js
