@@ -74,8 +74,7 @@ timestamps {
 
 		stage('Build Docker Image') {
 			build_docker (
-				DTR_ENV: 'prod',
-				MARKET: MARKET
+				DTR_ENV: 'prod'
 			)
 		} // End build docker image stage
 
