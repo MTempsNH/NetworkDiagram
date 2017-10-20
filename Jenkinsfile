@@ -24,7 +24,7 @@ timestamps {
 		CONFIG_FILE_DIR = ''
 		STATIC_CODE_ANALYSIS = 'false'
 		SCM = 'GIT'
-		REPO_LIST = 'https://bitbucket.fusion.lmig.com/scm/dss/network-diagramming-tool-config.git'
+		REPO_LIST = 'https://bitbucket.fusion.lmig.com/scm/dss/network-diagramming-tool.git'
 
 		// This function sets up the pipeline environment
 		pipe_config (
