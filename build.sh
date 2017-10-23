@@ -15,4 +15,4 @@ zip -r dist/fusion-api-jenkinsfiles.zip dist node_modules server.js package.json
 echo '----------------- Copying Fusionfile to dist folder...'
 cp Fusionfile dist
 mkdir -p dist/dist
-cp dist/ dist/dist
+cp dist dist/dist
