@@ -13,3 +13,5 @@ echo '----------------- Attempting to zip project structure...'
 zip -r dist/fusion-api-jenkinsfiles.zip node_modules server.js package.json
 echo '----------------- Copying Fusionfile to dist folder...'
 cp Fusionfile dist
+echo '----------------- Copying /dist to dist folder...'
+cp /dist dist
