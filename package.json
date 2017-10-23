@@ -5,6 +5,7 @@
   "repository": "https://github.com/user/project.git",
   "license": "MIT",
   "exposed-modules": [],
+  "main": "server.js",
   "scripts": {
     "build": "./node_modules/.bin/webpack -d",
     "doc-build": "",
