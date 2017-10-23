@@ -1,6 +1,6 @@
 ---
 app:
- name: network-diagramming-tool
+ name: network-diagram
  portfolio: ecommerce
  platform: nodejs
  upstream: 
