@@ -5,7 +5,7 @@ timestamps {
 	try {
 
 		// These variables can be changed to customize your pipeline
-		APP_ID = 'Network-Diagramming-Tool'
+		APP_ID = 'Network-Diagramming'
 		TARGET_RELEASE = '0.1'
 		MARKET = 'uscm'
 		PI_PORTFOLIO = 'eCommerce'
