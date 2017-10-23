@@ -11,6 +11,6 @@ echo "NPM build finished. Next: copy and paste index.html"
 cp src/index.html dist/index.html
 echo "Completed moving index.html"
 echo '----------------- Attempting to zip project structure...'
-zip -r dist/fusion-api-jenkinsfiles.zip node_modules server.js package.json
+zip -r dist/fusion-api-jenkinsfiles.zip dist node_modules server.js package.json
 echo '----------------- Copying Fusionfile to dist folder...'
 cp Fusionfile dist
