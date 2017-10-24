@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Making dist directory"
-mkdir -p dist
+mkdir -p dist/dist
 echo "Finished making dist directory. Next: Npm install"
 npm install || exit 1
 echo "NPM install finished. Next: Starting npm run build directory"
@@ -14,5 +14,5 @@ echo '----------------- Attempting to zip project structure...'
 zip -r dist/fusion-api-jenkinsfiles.zip dist node_modules server.js package.json
 echo '----------------- Copying Fusionfile to dist folder...'
 cp Fusionfile dist
-mkdir -p /dist/dist
+
 
