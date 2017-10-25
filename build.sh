@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Making dist directory"
-mkdir -p dist/dist
+mkdir -p dist
 echo "Finished making dist directory. Next: Npm install"
 npm install || exit 1
 echo "NPM install finished. Next: Starting npm run build directory"
