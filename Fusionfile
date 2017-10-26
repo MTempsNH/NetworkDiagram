@@ -5,5 +5,5 @@ app:
  platform: nodejs
  upstream: 
  auth_type: none
- port: 8903
+ port: 8080
  config_version: latest
